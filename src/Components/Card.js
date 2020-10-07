@@ -1,33 +1,42 @@
-import React, {useState} from "react";
-import ReactCardFlip from "react-card-flip"; /* 1 */
+import React, { useState } from "react";
+import cardBack from "../images/CardBack.jpg";
+import ReactCardFlip from "react-card-flip";
 
-import CardBack from '../images/CardBack.jpg'
+const Card = ({ card, checkFlipped }) => {
+  const [flipped, setFlipped] = useState(false);
 
+  const handleFlip = 
+        () => { if (flipped !== true) {
+                        setFlipped(true);
 
-const Card = ({card}) => {
-        const [flipped, setFlipped] = useState(false)
-        // let cardcover = flipped ?  CardBack : card.front;
+                        checkFlipped({ id: card.id, setFlipped: setFlipped });
+                        } 
+                }; 
 
-        return(
-            <div className="col-3 my-1">
-              <ReactCardFlip isFlipped={flipped} flipSpeedFrontToBack={1} flipDirection="horizontal">
-                <a href="#" > 
-                 <img className="mx-auto" 
-                    src={CardBack}
-                    width="100%"
-                    hieght="100%"
-                    onClick={()=>setFlipped(!flipped)}/>
-                </a>
-                <a href="#" > 
-                 <img className="mx-auto" 
-                    src={card.front}
-                    width="100%"
-                    hieght="100%"
-                    onClick={()=>setFlipped(!flipped)}/>
-                </a>
-              </ReactCardFlip>
-            </div>
-        );
-    };
+  return (
+    <div className="col-3 my-1">
+      <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
+        <img
+          className="mx-auto"
+          src={cardBack}
+          //   used percentages instead of pixels to be responsive with the screen size
+          height="100%"
+          width="100%"
+          key="front"
+          onClick={() => handleFlip()} 
+        />
+
+        <img
+          className="mx-auto"
+          src={card.front}
+          height="100%"
+          width="100%"
+          key="back"
+          onClick={() => handleFlip()} 
+        />
+      </ReactCardFlip>
+    </div>
+  );
+};
 
 export default Card;
