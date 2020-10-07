@@ -1,13 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 
-import cards from './data.js'
-import CardBack from './images/CardBack.jpg'
+// Data
+import data from './data.js'
+
+//Components
 import Card from './Components/Card'
+
+//
+import { shuffle } from "./utils";
+
 
 function App() {
   
-  let grid = cards.map(card =>  <Card key ={card.id} card={card}/>);
+  const [cards , setCards] = useState(shuffle([...data, ...data]));
+
+  let grid = cards.map((card, idx) => ( 
+        <Card key ={`${card.id}-${idx}`} card={card}/>));
+
+        // {`${card.id}-${idx}`}
 
   return (
     <div className="App border my-5">
@@ -21,3 +32,4 @@ function App() {
 }
 
 export default App;
+ 

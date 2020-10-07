@@ -10,7 +10,7 @@ const Card = ({card}) => {
 
         return(
             <div className="col-3 my-1">
-              <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
+              <ReactCardFlip isFlipped={flipped} flipSpeedFrontToBack={1} flipDirection="horizontal">
                 <a href="#" > 
                  <img className="mx-auto" 
                     src={CardBack}
