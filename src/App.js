@@ -3,26 +3,17 @@ import "./App.css";
 
 import cards from './data.js'
 import CardBack from './images/CardBack.jpg'
+import Card from './Components/Card'
 
 function App() {
   
+  let grid = cards.map(card =>  <Card key ={card.id} card={card}/>);
+
   return (
     <div className="App border my-5">
       <div className="container">
-
       <div className="row">
-        <div className="col-3 my-1">
-          <img className="mx-auto" 
-               src={cards[4].front}
-               width="100%"
-               hieght="100%"
-          />
-          <img className="mx-auto" 
-               width="100%"
-               hieght="100%"
-               src={CardBack}
-          />
-        </div>
+        {grid}
       </div>
      </div>
     </div>
